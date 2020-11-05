@@ -50,6 +50,16 @@
 		</div>
 		<div class="header__menu">
 			<div class="container">
+				<?php wp_nav_menu( [
+					'theme_location'  => 'first-menu',
+					'container'       => 'nav',
+					'container_class' => 'header__nav nav-header',
+					'echo'            => true,
+					'items_wrap'      => '<ul class="%2$s">%3$s</ul>',
+					'menu_class' => 'nav-header__list',
+					'depth'           => 0,
+				] ); ?>
+
 				<nav class="header__nav nav-header">
 					<ul class="nav-header__list">
 						<li class="nav-header__item"><a class="nav-header__link" href="./brand.html">
@@ -58,7 +68,7 @@
 						<li class="nav-header__item"><a class="nav-header__link" href="./catalog.html">
 								<h4 class="nav-header__title">Каталог</h4>
 							</a></li>
-						<li class="nav-header__item"><a class="nav-header__link" href="./"><svg class="icon-logo header__logo">
+						<li class="nav-header__item"><a class="nav-header__link" href="<?php bloginfo('url') ?>"><svg class="icon-logo header__logo">
 									<use xlink:href="img/sprite.svg#logo"></use>
 								</svg></a></li>
 						<li class="nav-header__item"><a class="nav-header__link" href="./contacts.html">
@@ -74,7 +84,7 @@
 				<div class="nav-mob">
 					<div class="nav-mob__wrap">
 						<ul class="nav-mob__list">
-							<li class="nav-mob__item"><a class="nav-mob__link" href="./">Главная</a></li>
+							<li class="nav-mob__item"><a class="nav-mob__link" href="<?php bloginfo('url') ?>">Главная</a></li>
 							<li class="nav-mob__item"><a class="nav-mob__link" href="./catalog.html">Каталог</a></li>
 							<li class="nav-mob__item"><a class="nav-mob__link" href="./contacts.html">Контакты</a></li>
 							<li class="nav-mob__item"><a class="nav-mob__link" href="./delivery.html">Доставка</a></li>
