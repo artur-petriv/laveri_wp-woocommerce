@@ -18,6 +18,15 @@ function theme_scripts() {
 	wp_enqueue_script( 'init', get_template_directory_uri() . '/assets/js/main.min.js', [jquery],null, true );
 }
 
+// Add woocommerce support
+if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+	add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
+	function mytheme_add_woocommerce_support() {
+		add_theme_support( 'woocommerce' );
+	}
+}
+
+
 
 // Register header Menu
 // function theme_register_nav_menu() {
