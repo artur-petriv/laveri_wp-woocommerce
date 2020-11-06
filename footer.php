@@ -5,18 +5,18 @@
 					<div class="content-footer__column">
 						<h4 class="content-footer__title">Laveri</h4>
 						<ul class="content-footer__list">
-							<li class="content-footer__item"><a class="content-footer__link" href="./brand.html">О бренде</a></li>
-							<li class="content-footer__item"><a class="content-footer__link" href="./contacts.html">Контакты</a></li>
-							<li class="content-footer__item"><a class="content-footer__link" href="./agreement.html">Условия
+							<li class="content-footer__item"><a class="content-footer__link" href="<?php bloginfo('url') ?>/brand/">О бренде</a></li>
+							<li class="content-footer__item"><a class="content-footer__link" href="<?php bloginfo('url') ?>/contacts/">Контакты</a></li>
+							<li class="content-footer__item"><a class="content-footer__link" href="<?php bloginfo('url') ?>/agreement/">Условия
 									использования</a></li>
 						</ul>
 					</div>
 					<div class="content-footer__column">
 						<h4 class="content-footer__title">Покупателям</h4>
 						<ul class="content-footer__list">
-							<li class="content-footer__item"><a class="content-footer__link" href="./delivery.html">Оплата и
+							<li class="content-footer__item"><a class="content-footer__link" href="<?php bloginfo('url') ?>/delivery/">Оплата и
 									доставка</a></li>
-							<li class="content-footer__item"><a class="content-footer__link" href="./faq.html">FAQ</a></li>
+							<li class="content-footer__item"><a class="content-footer__link" href="<?php bloginfo('url') ?>/faq/">FAQ</a></li>
 						</ul>
 					</div>
 					<div class="content-footer__column">

@@ -1,3 +1,10 @@
+<?php
+/*
+Template Name: Главная Кастом
+Template Post Type: page
+*/
+?>
+
 <?php get_header(); ?>
 
 	<div class="slider-main">
