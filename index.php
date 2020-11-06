@@ -6,15 +6,15 @@
 				<div class="swiper-wrapper">
 					<div class="slider-main__item swiper-slide"><img class="slider-main__img" src="img/banner_01.jpg" alt="Bag"><a
 							class="slider-main__link" href="./card.html">Подробнее<svg class="icon-arrow-right slider-main__icon">
-								<use xlink:href="img/sprite.svg#arrow-right"></use>
+								<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#arrow-right"></use>
 							</svg></a></div>
 					<div class="slider-main__item swiper-slide"><img class="slider-main__img" src="img/banner_02.jpg" alt="Bag"><a
 							class="slider-main__link" href="./card.html">Подробнее<svg class="icon-arrow-right slider-main__icon">
-								<use xlink:href="img/sprite.svg#arrow-right"></use>
+								<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#arrow-right"></use>
 							</svg></a></div>
 					<div class="slider-main__item swiper-slide"><img class="slider-main__img" src="img/banner_03.jpg" alt="Bag"><a
 							class="slider-main__link" href="./card.html">Подробнее<svg class="icon-arrow-right slider-main__icon">
-								<use xlink:href="img/sprite.svg#arrow-right"></use>
+								<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#arrow-right"></use>
 							</svg></a></div>
 				</div>
 				<div class="swiper-pagination"></div>

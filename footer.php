@@ -31,15 +31,15 @@
 						<ul class="content-footer__list content-footer__list_socials">
 							<li class="content-footer__item content-footer__item_social"><a class="content-footer__link" href="#"><svg
 										class="icon-facebook content-footer__icon">
-										<use xlink:href="img/sprite.svg#facebook"></use>
+										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#facebook"></use>
 									</svg></a></li>
 							<li class="content-footer__item content-footer__item_social"><a class="content-footer__link" href="#"><svg
 										class="icon-instagram content-footer__icon">
-										<use xlink:href="img/sprite.svg#instagram"></use>
+										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#instagram"></use>
 									</svg></a></li>
 							<li class="content-footer__item content-footer__item_social"><a class="content-footer__link" href="#"><svg
 										class="icon-vk content-footer__icon">
-										<use xlink:href="img/sprite.svg#vk"></use>
+										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#vk"></use>
 									</svg></a></li>
 						</ul>
 					</div>
