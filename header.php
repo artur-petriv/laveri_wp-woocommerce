@@ -52,19 +52,19 @@
 			<div class="container">
 				<nav class="header__nav nav-header">
 					<ul class="nav-header__list">
-						<li class="nav-header__item"><a class="nav-header__link" href="./brand.html">
+						<li class="nav-header__item"><a class="nav-header__link" href="/laveri/brand/">
 								<h4 class="nav-header__title">О бренде</h4>
 							</a></li>
-						<li class="nav-header__item"><a class="nav-header__link" href="./catalog.html">
+						<li class="nav-header__item"><a class="nav-header__link" href="/laveri/catalog/">
 								<h4 class="nav-header__title">Каталог</h4>
 							</a></li>
 						<li class="nav-header__item"><a class="nav-header__link" href="<?php bloginfo('url') ?>"><svg class="icon-logo header__logo">
 									<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#logo"></use>
 								</svg></a></li>
-						<li class="nav-header__item"><a class="nav-header__link" href="./contacts.html">
+						<li class="nav-header__item"><a class="nav-header__link" href="/laveri/contacts/">
 								<h4 class="nav-header__title">Контакты</h4>
 							</a></li>
-						<li class="nav-header__item"><a class="nav-header__link" href="./delivery.html">
+						<li class="nav-header__item"><a class="nav-header__link" href="/laveri/delivery/">
 								<h4 class="nav-header__title">Доставка</h4>
 							</a></li>
 						<li class="nav-header__mobile"><button class="hamburger hamburger--spin" type="button"><span
