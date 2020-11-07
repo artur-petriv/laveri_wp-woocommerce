@@ -8,6 +8,7 @@ add_action( 'after_setup_theme', 'theme_register_nav_menu' );
 function theme_styles() {
 	wp_enqueue_style( 'style-main', get_stylesheet_uri() );
 	wp_enqueue_style( 'laveri-style', get_template_directory_uri() . '/assets/css/main.css' );
+	wp_enqueue_style( 'woocommerce-style', get_template_directory_uri() . '/assets/css/woocommerce.css' );
 }
 
 // Add Scripts
@@ -18,7 +19,7 @@ function theme_scripts() {
 	wp_enqueue_script( 'init', get_template_directory_uri() . '/assets/js/main.min.js', [jquery],null, true );
 }
 
-// Add woocommerce support
+// Add Woocommerce Support
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
 	add_action( 'after_setup_theme', 'mytheme_add_woocommerce_support' );
 	function mytheme_add_woocommerce_support() {
@@ -26,6 +27,42 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	}
 }
 
+// Change the Breadcrumb separator
+add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_delimiter' );
+function wcc_change_breadcrumb_delimiter( $defaults ) {
+	$defaults['delimiter'] = ' &raquo; ';
+	return $defaults;
+}
+add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_delimiter', 20 );
+
+
+// Remove Sidebar woocommerce
+add_action( 'woocommerce_before_main_content', 'remove_sidebar' );
+function remove_sidebar() {
+	if ( is_shop() ) {
+		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+	}
+}
+
+// Change Result_count position
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
+add_action( 'woocommerce_archive_description', 'woocommerce_result_count', 15);
+
+// Remove notice
+remove_action( 'woocommerce_before_shop_loop', 'woocommerce_output_all_notices', 10 );
+
+// Change Breadcrumb position
+remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 );
+add_action( 'woocommerce_before_shop_loop', 'woocommerce_breadcrumb', 40 );
+
+// Change Breadcrumb wrapper
+add_filter( 'woocommerce_breadcrumb_defaults', 'change_breadcrumbs_wrapper' );
+ 
+function change_breadcrumbs_wrapper( $defaults ) {
+	$defaults[ 'wrap_before' ] = '<div class="breadcrumbs">';
+	$defaults[ 'wrap_after' ] = '</div>';
+	return $defaults;
+}
 
 
 // Register header Menu

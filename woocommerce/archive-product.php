@@ -18,7 +18,8 @@
 defined( 'ABSPATH' ) || exit;
 
 get_header( 'shop' );
-
+	?>
+	<?php
 /**
  * Hook: woocommerce_before_main_content.
  *
@@ -29,9 +30,10 @@ get_header( 'shop' );
 do_action( 'woocommerce_before_main_content' );
 
 ?>
-<header class="woocommerce-products-header">
+<div class="page__head head-page">
+	<div class="head-page__left">
 	<?php if ( apply_filters( 'woocommerce_show_page_title', true ) ) : ?>
-		<h1 class="woocommerce-products-header__title page-title"><?php woocommerce_page_title(); ?></h1>
+		<h1 class="head-page__title"><?php woocommerce_page_title(); ?></h1>
 	<?php endif; ?>
 
 	<?php
@@ -43,10 +45,12 @@ do_action( 'woocommerce_before_main_content' );
 	 */
 	do_action( 'woocommerce_archive_description' );
 	?>
-</header>
+</div>
 <?php
 if ( woocommerce_product_loop() ) {
-
+	?>
+	<div class="head-page__right">
+	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop.
 	 *
@@ -55,7 +59,11 @@ if ( woocommerce_product_loop() ) {
 	 * @hooked woocommerce_catalog_ordering - 30
 	 */
 	do_action( 'woocommerce_before_shop_loop' );
+	?>
+	</div>
+</div>
 
+	<?php
 	woocommerce_product_loop_start();
 
 	if ( wc_get_loop_prop( 'total' ) ) {
