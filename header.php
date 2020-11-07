@@ -55,7 +55,7 @@
 						<li class="nav-header__item"><a class="nav-header__link" href="/laveri/brand/">
 								<h4 class="nav-header__title">О бренде</h4>
 							</a></li>
-						<li class="nav-header__item"><a class="nav-header__link" href="/laveri/catalog/">
+						<li class="nav-header__item"><a class="nav-header__link" href="/laveri/shop/">
 								<h4 class="nav-header__title">Каталог</h4>
 							</a></li>
 						<li class="nav-header__item"><a class="nav-header__link" href="<?php bloginfo('url') ?>"><svg class="icon-logo header__logo">
