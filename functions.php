@@ -57,13 +57,69 @@ add_action( 'woocommerce_before_shop_loop', 'woocommerce_breadcrumb', 40 );
 
 // Change Breadcrumb wrapper
 add_filter( 'woocommerce_breadcrumb_defaults', 'change_breadcrumbs_wrapper' );
- 
 function change_breadcrumbs_wrapper( $defaults ) {
 	$defaults[ 'wrap_before' ] = '<div class="breadcrumbs">';
 	$defaults[ 'wrap_after' ] = '</div>';
 	return $defaults;
 }
 
+// Add class for a.product__link
+if ( ! function_exists( 'woocommerce_template_loop_product_link_open' ) ) {
+	function woocommerce_template_loop_product_link_open() {
+		global $product;
+		$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
+		echo '<a href="' . esc_url( $link ) . '" class="product__link">';
+	}
+}
+
+// Test
+remove_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_template_loop_product_thumbnail', 10);
+
+if ( ! function_exists( 'woocommerce_template_loop_product_thumbnail' ) ) {
+    function woocommerce_template_loop_product_thumbnail() {
+        echo woocommerce_get_product_thumbnail();
+    } 
+}
+
+if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {   
+    function woocommerce_get_product_thumbnail( $size = 'shop_catalog' ) {
+        global $post, $woocommerce;
+        $output = '<div class="product__images">';
+
+        if ( has_post_thumbnail() ) {               
+            $output .= get_the_post_thumbnail( $post->ID, $size );
+        } else {
+             $output .= wc_placeholder_img( $size );
+             // Alternative
+						 // $output .= '<img class="123" src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="300px" height="300px" />';
+        }                       
+        $output .= '</div>';
+        return $output;
+    }
+}
+
+// Test 2
+add_action( 'woocommerce_before_shop_loop_item_title', 'add_on_hover_shop_loop_image' ) ; 
+
+function add_on_hover_shop_loop_image( $size = 'shop_catalog' ) {
+
+		$image_id = wc_get_product()->get_gallery_image_ids()[0] ; 
+		
+		echo '<div class="product__image product__image-back">';
+
+    if ( $image_id ) {
+
+        echo wp_get_attachment_image( $image_id, array("300", "300"), "", array( "class" => "product__img" ) ) ;
+
+    } else {  //assuming not all products have galleries set
+
+        echo wp_get_attachment_image( wc_get_product()->get_image_id(), array("300", "300"), "", array( "class" => "product__img" ) ) ; 
+
+		}
+		echo '</div>';
+
+}
 
 // Register header Menu
 // function theme_register_nav_menu() {
