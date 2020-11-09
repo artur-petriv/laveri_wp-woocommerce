@@ -28,13 +28,11 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 }
 
 // Change the Breadcrumb separator
-add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_delimiter' );
+add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_delimiter', 20 );
 function wcc_change_breadcrumb_delimiter( $defaults ) {
 	$defaults['delimiter'] = ' &raquo; ';
 	return $defaults;
 }
-add_filter( 'woocommerce_breadcrumb_defaults', 'wcc_change_breadcrumb_delimiter', 20 );
-
 
 // Remove Sidebar woocommerce
 add_action( 'woocommerce_before_main_content', 'remove_sidebar' );
@@ -162,11 +160,71 @@ function change_existing_currency_symbol( $currency_symbol, $currency ) {
 // Change quantity of produtct on shop page (temporal changes)
 add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 4;' ), 20 );
 
-
 // Remove Sidebar sinhle-product
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 
+// Add actions to content-single-product page
+add_action( 'woocommerce_before_single_product', 'woocommerce_breadcrumb', 10 );
+add_action( 'woocommerce_before_single_product', 'add_page_head_wraps', 8 );
+function add_page_head_wraps() {
+	echo "<div class='page__wrap'>";
+	echo "<div class='page__head head-page'>";
+}
 
+add_action( 'woocommerce_before_single_product', 'add_page_head_wraps_close', 40 );
+function add_page_head_wraps_close() {
+	echo "</div'>";
+	echo "</div>";
+}
+
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+
+remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 70 );
+
+
+function wc_get_gallery_image_html_custom( $attachment_id, $main_image = false ) {
+	$flexslider        = (bool) apply_filters( 'woocommerce_single_product_flexslider_enabled', get_theme_support( 'wc-product-gallery-slider' ) );
+	$gallery_thumbnail = wc_get_image_size( 'gallery_thumbnail' );
+	$thumbnail_size    = apply_filters( 'woocommerce_gallery_thumbnail_size', array( $gallery_thumbnail['width'], $gallery_thumbnail['height'] ) );
+	$image_size        = apply_filters( 'woocommerce_gallery_image_size', $flexslider || $main_image ? 'woocommerce_single' : $thumbnail_size );
+	$full_size         = apply_filters( 'woocommerce_gallery_full_size', apply_filters( 'woocommerce_product_thumbnails_large_size', 'full' ) );
+	$thumbnail_src     = wp_get_attachment_image_src( $attachment_id, $thumbnail_size );
+	$full_src          = wp_get_attachment_image_src( $attachment_id, $full_size );
+	$alt_text          = trim( wp_strip_all_tags( get_post_meta( $attachment_id, '_wp_attachment_image_alt', true ) ) );
+	$image             = wp_get_attachment_image(
+		$attachment_id,
+		$image_size,
+		false,
+		apply_filters(
+			'woocommerce_gallery_image_html_attachment_image_params',
+			array(
+				'title'                   => _wp_specialchars( get_post_field( 'post_title', $attachment_id ), ENT_QUOTES, 'UTF-8', true ),
+				'data-caption'            => _wp_specialchars( get_post_field( 'post_excerpt', $attachment_id ), ENT_QUOTES, 'UTF-8', true ),
+				'data-src'                => esc_url( $full_src[0] ),
+				'data-large_image'        => esc_url( $full_src[0] ),
+				'data-large_image_width'  => esc_attr( $full_src[1] ),
+				'data-large_image_height' => esc_attr( $full_src[2] ),
+				'class'                   => esc_attr( $main_image ? 'galery-card__img' : '' ),
+			),
+			$attachment_id,
+			$image_size,
+			$main_image
+		)
+	);
+
+	return '<a class="galery-card__link magnific" href="' . esc_url( $full_src[0] ) . '">' . $image . '</a>';
+}
+
+
+// Change Stock names
+add_filter( 'woocommerce_get_availability', 'custom_get_availability', 1, 2);
+function custom_get_availability( $availability, $_product ) {
+if ( $_product->is_in_stock() ) $availability['availability'] = __('В наличии', 'woocommerce');
+if ( !$_product->is_in_stock() ) $availability['availability'] = __('Нет в наличии', 'woocommerce');
+    return $availability;
+}
 
 
 // Register header Menu
