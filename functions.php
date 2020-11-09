@@ -85,22 +85,23 @@ if ( ! function_exists( 'woocommerce_template_loop_product_thumbnail' ) ) {
 if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {   
     function woocommerce_get_product_thumbnail( $size = 'shop_catalog' ) {
         global $post, $woocommerce;
-        $output = '<div class="product__images">';
+				$output = '<div class="product__image product__image-front">';
 
         if ( has_post_thumbnail() ) {               
-            $output .= get_the_post_thumbnail( $post->ID, $size );
+            $output .= get_the_post_thumbnail( $post->ID, $size, array('class' => 'product__img') );
         } else {
              $output .= wc_placeholder_img( $size );
              // Alternative
 						 // $output .= '<img class="123" src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="300px" height="300px" />';
-        }                       
+				}
+
         $output .= '</div>';
         return $output;
     }
 }
 
 // Test 2
-add_action( 'woocommerce_before_shop_loop_item_title', 'add_on_hover_shop_loop_image' ) ; 
+add_action( 'woocommerce_before_shop_loop_item_title', 'add_on_hover_shop_loop_image', 15 ) ; 
 
 function add_on_hover_shop_loop_image( $size = 'shop_catalog' ) {
 
@@ -120,6 +121,53 @@ function add_on_hover_shop_loop_image( $size = 'shop_catalog' ) {
 		echo '</div>';
 
 }
+
+// Test 3
+add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_before_shop_loop_item_wrap', 5 ) ; 
+function woocommerce_before_shop_loop_item_wrap( $size = 'shop_catalog' ) {
+	echo '<div class="product__images">';
+}
+
+// Test 4
+add_action( 'woocommerce_before_shop_loop_item_title', 'woocommerce_before_shop_loop_item_wrap_close', 20 ) ; 
+function woocommerce_before_shop_loop_item_wrap_close( $size = 'shop_catalog' ) {
+	echo '</div>';
+}
+
+// Test 5
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
+add_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_link_close', 15 );
+
+
+// Add filter
+function woocommerce_template_loop_product_title() {
+	echo '<h3 class="' . esc_attr( apply_filters( 'woocommerce_product_loop_title_classes', 'product__title' ) ) . '">' . get_the_title() . '</h3>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+}
+
+// Add rating element
+add_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_rating_custom', 5 );
+function woocommerce_template_loop_rating_custom() {
+	echo '<div class="product__rate"><span class="product__rate-text">Not rated</span></div>';
+}
+
+// Change currency symbol
+add_filter('woocommerce_currency_symbol', 'change_existing_currency_symbol', 10, 2);
+function change_existing_currency_symbol( $currency_symbol, $currency ) {
+     switch( $currency ) {
+          case 'UAH': $currency_symbol = ' грн.'; break;
+     }
+     return $currency_symbol;
+}
+
+// Change quantity of produtct on shop page (temporal changes)
+add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 4;' ), 20 );
+
+
+// Remove Sidebar sinhle-product
+remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+
+
+
 
 // Register header Menu
 // function theme_register_nav_menu() {
