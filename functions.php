@@ -181,7 +181,7 @@ remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_d
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
-add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 70 );
+add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 25 );
 
 
 function wc_get_gallery_image_html_custom( $attachment_id, $main_image = false ) {
@@ -226,6 +226,9 @@ if ( !$_product->is_in_stock() ) $availability['availability'] = __('Нет в �
     return $availability;
 }
 
+// Change content-single-product
+// remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
+// add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 25 );
 
 // Register header Menu
 // function theme_register_nav_menu() {
