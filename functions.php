@@ -177,9 +177,11 @@ function add_page_head_wraps_close() {
 	echo "</div>";
 }
 
+// Remove upsale and relate-products on content-single-product (temporal changes)
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 
+// Change content-single-product descripton position
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
 add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 25 );
 
@@ -217,7 +219,6 @@ function wc_get_gallery_image_html_custom( $attachment_id, $main_image = false )
 	return '<a class="galery-card__link magnific" href="' . esc_url( $full_src[0] ) . '">' . $image . '</a>';
 }
 
-
 // Change Stock names
 add_filter( 'woocommerce_get_availability', 'custom_get_availability', 1, 2);
 function custom_get_availability( $availability, $_product ) {
@@ -225,6 +226,9 @@ if ( $_product->is_in_stock() ) $availability['availability'] = __('В нали�
 if ( !$_product->is_in_stock() ) $availability['availability'] = __('Нет в наличии', 'woocommerce');
     return $availability;
 }
+
+
+
 
 // Change content-single-product
 // remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );

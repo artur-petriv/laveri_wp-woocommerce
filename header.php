@@ -40,10 +40,16 @@
 										class="icon-phone header__social-icon">
 										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#phone"></use>
 									</svg></a></li>
-						</ul><a class="header__cart cart-header" href="#"><svg class="icon-cart header__cart-icon">
+						</ul>
+						<?php global $woocommerce; ?>
+						<a class="header__cart cart-header" href="<?php echo $woocommerce->cart->get_cart_url() ?>">
+							<svg class="icon-cart header__cart-icon">
 								<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#cart"></use>
-							</svg><span class="cart-header__title">Ваша корзина</span><span class="cart-header__dash">-</span><span
-								class="cart-header__amount">0 грн.</span></a>
+							</svg>
+							<span class="cart-header__title">Ваша корзина</span>
+							<span class="cart-header__dash">-</span>
+							<span class="cart-header__amount"><?php echo sprintf($woocommerce->cart->get_cart_total()); ?></span>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -58,7 +64,8 @@
 						<li class="nav-header__item"><a class="nav-header__link" href="/laveri/shop/">
 								<h4 class="nav-header__title">Каталог</h4>
 							</a></li>
-						<li class="nav-header__item"><a class="nav-header__link" href="<?php bloginfo('url') ?>"><svg class="icon-logo header__logo">
+						<li class="nav-header__item"><a class="nav-header__link" href="<?php bloginfo('url') ?>"><svg
+									class="icon-logo header__logo">
 									<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#logo"></use>
 								</svg></a></li>
 						<li class="nav-header__item"><a class="nav-header__link" href="/laveri/contacts/">
