@@ -2,13 +2,28 @@
 
 add_action( 'wp_enqueue_scripts', 'theme_styles' );
 add_action( 'wp_footer', 'theme_scripts' );
-add_action( 'after_setup_theme', 'theme_register_nav_menu' );
+add_action( 'widgets_init', 'register_my_widgets' );
+
+function register_my_widgets(){
+	register_sidebar( array(
+		'name'          => 'Left Sidebar',
+		'id'            => "left_sidebar",
+		'description'   => 'Описание сайдбара',
+		'class'         => '',
+		'before_widget' => '<li id="%1$s" class="widget %2$s">',
+		'after_widget'  => "</li>\n",
+		'before_title'  => '<h2 class="widgettitle">',
+		'after_title'   => "</h2>\n",
+	) );
+}
 
 // Add Styles
 function theme_styles() {
 	wp_enqueue_style( 'style-main', get_stylesheet_uri() );
 	wp_enqueue_style( 'laveri-style', get_template_directory_uri() . '/assets/css/main.css' );
 	wp_enqueue_style( 'woocommerce-style', get_template_directory_uri() . '/assets/css/woocommerce.css' );
+
+
 }
 
 // Add Scripts
@@ -16,7 +31,7 @@ function theme_scripts() {
 	wp_deregister_script( 'jquery' );
 	wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js' );
 	wp_enqueue_script( 'jquery' );
-	wp_enqueue_script( 'init', get_template_directory_uri() . '/assets/js/main.min.js', [jquery],null, true );
+	wp_enqueue_script( 'init', get_template_directory_uri() . '/assets/js/main.min.js', array('jquery'), null, true );
 }
 
 // Add Woocommerce Support
@@ -158,7 +173,7 @@ function change_existing_currency_symbol( $currency_symbol, $currency ) {
 }
 
 // Change quantity of produtct on shop page (temporal changes)
-add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 4;' ), 20 );
+// add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 4;' ), 20 );
 
 // Remove Sidebar sinhle-product
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
@@ -228,6 +243,8 @@ if ( !$_product->is_in_stock() ) $availability['availability'] = __('Нет в �
 }
 
 
+// Off z-lib compression
+remove_action( 'shutdown', 'wp_ob_end_flush_all', 1 );
 
 
 // Change content-single-product
@@ -235,9 +252,45 @@ if ( !$_product->is_in_stock() ) $availability['availability'] = __('Нет в �
 // add_action( 'woocommerce_single_product_summary', 'woocommerce_output_product_data_tabs', 25 );
 
 // Register header Menu
-// function theme_register_nav_menu() {
-// 	register_nav_menu( 'first-menu', 'Шапка сайта - меню' ); 
-// }
+function theme_register_nav_menu() {
+	register_nav_menu( 'first-menu', 'Шапка сайта - меню' ); 
+}
+
+
+// Thumbnail function
+function laveri2_post_thumbnail() {
+	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+		return;
+	}
+
+	if ( is_singular() ) :
+		?>
+
+		<div class="post-thumbnail">
+			<?php the_post_thumbnail(); ?>
+		</div><!-- .post-thumbnail -->
+
+	<?php else : ?>
+
+		<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
+			<?php
+				the_post_thumbnail(
+					'post-thumbnail',
+					array(
+						'alt' => the_title_attribute(
+							array(
+								'echo' => false,
+							)
+						),
+					)
+				);
+			?>
+		</a>
+
+		<?php
+	endif;
+}
+
 
 // Change id to Menu li elements
 // add_filter( 'nav_menu_item_id', 'filter_menu_item_css_id', 10, 4 );

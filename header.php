@@ -42,7 +42,7 @@
 									</svg></a></li>
 						</ul>
 						<?php global $woocommerce; ?>
-						<a class="header__cart cart-header" href="<?php echo $woocommerce->cart->get_cart_url() ?>">
+						<a class="header__cart cart-header" href="<?php echo esc_url( wc_get_cart_url() ); ?>">
 							<svg class="icon-cart header__cart-icon">
 								<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#cart"></use>
 							</svg>
@@ -82,9 +82,9 @@
 					<div class="nav-mob__wrap">
 						<ul class="nav-mob__list">
 							<li class="nav-mob__item"><a class="nav-mob__link" href="<?php bloginfo('url') ?>">Главная</a></li>
-							<li class="nav-mob__item"><a class="nav-mob__link" href="./catalog.html">Каталог</a></li>
-							<li class="nav-mob__item"><a class="nav-mob__link" href="./contacts.html">Контакты</a></li>
-							<li class="nav-mob__item"><a class="nav-mob__link" href="./delivery.html">Доставка</a></li>
+							<li class="nav-mob__item"><a class="nav-mob__link" href="/laveri/shop/">Каталог</a></li>
+							<li class="nav-mob__item"><a class="nav-mob__link" href="/laveri/contacts/">Контакты</a></li>
+							<li class="nav-mob__item"><a class="nav-mob__link" href="/laveri/delivery/">Доставка</a></li>
 						</ul>
 					</div>
 				</div>

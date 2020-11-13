@@ -9,7 +9,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package laveri
+ * @package laveri2
  */
 
 get_header();
