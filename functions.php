@@ -20,8 +20,8 @@ function register_my_widgets(){
 // Add Styles
 function theme_styles() {
 	wp_enqueue_style( 'style-main', get_stylesheet_uri() );
-	wp_enqueue_style( 'laveri-style', get_template_directory_uri() . '/assets/css/main.css' );
 	wp_enqueue_style( 'woocommerce-style', get_template_directory_uri() . '/assets/css/woocommerce.css' );
+	wp_enqueue_style( 'laveri-style', get_template_directory_uri() . '/assets/css/main.css' );
 
 
 }
@@ -117,22 +117,34 @@ if ( ! function_exists( 'woocommerce_get_product_thumbnail' ) ) {
 add_action( 'woocommerce_before_shop_loop_item_title', 'add_on_hover_shop_loop_image', 15 ) ; 
 
 function add_on_hover_shop_loop_image( $size = 'shop_catalog' ) {
-
-		$image_id = wc_get_product()->get_gallery_image_ids()[0] ; 
+		if(!empty(wc_get_product()->get_gallery_image_ids())) {
+			$image_id = wc_get_product()->get_gallery_image_ids()[0] ; 
 		
-		echo '<div class="product__image product__image-back">';
+			echo '<div class="product__image product__image-back">';
 
-    if ( $image_id ) {
+			if ( $image_id ) {
 
-        echo wp_get_attachment_image( $image_id, array("300", "300"), "", array( "class" => "product__img" ) ) ;
+					echo wp_get_attachment_image( $image_id, array("300", "300"), "", array( "class" => "product__img" ) ) ;
 
-    } else {  //assuming not all products have galleries set
+			} else {  //assuming not all products have galleries set
 
-        echo wp_get_attachment_image( wc_get_product()->get_image_id(), array("300", "300"), "", array( "class" => "product__img" ) ) ; 
+					echo wp_get_attachment_image( wc_get_product()->get_image_id(), array("300", "300"), "", array( "class" => "product__img" ) ) ; 
 
+			}
+			echo '</div>';
+		} else {
+			global $post, $woocommerce;
+			$size = 'shop_catalog';
+			echo '<div class="product__image product__image-back">';
+				if ( has_post_thumbnail() ) {               
+            echo get_the_post_thumbnail( $post->ID, $size, array('class' => 'product__img') );
+        } else {
+             echo wc_placeholder_img( $size );
+             // Alternative
+						 // $output .= '<img class="123" src="' . woocommerce_placeholder_img_src() . '" alt="Placeholder" width="300px" height="300px" />';
+				}
+			echo '</div>';
 		}
-		echo '</div>';
-
 }
 
 // Test 3
@@ -179,8 +191,8 @@ function change_existing_currency_symbol( $currency_symbol, $currency ) {
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 
 // Add actions to content-single-product page
-add_action( 'woocommerce_before_single_product', 'woocommerce_breadcrumb', 10 );
-add_action( 'woocommerce_before_single_product', 'add_page_head_wraps', 8 );
+add_action( 'woocommerce_before_single_product', 'woocommerce_breadcrumb', 13 );
+add_action( 'woocommerce_before_single_product', 'add_page_head_wraps', 11 );
 function add_page_head_wraps() {
 	echo "<div class='page__wrap'>";
 	echo "<div class='page__head head-page'>";
@@ -262,16 +274,12 @@ function laveri2_post_thumbnail() {
 	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 		return;
 	}
-
 	if ( is_singular() ) :
 		?>
-
 		<div class="post-thumbnail">
 			<?php the_post_thumbnail(); ?>
 		</div><!-- .post-thumbnail -->
-
 	<?php else : ?>
-
 		<a class="post-thumbnail" href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
 			<?php
 				the_post_thumbnail(
@@ -290,6 +298,7 @@ function laveri2_post_thumbnail() {
 		<?php
 	endif;
 }
+
 
 
 // Change id to Menu li elements

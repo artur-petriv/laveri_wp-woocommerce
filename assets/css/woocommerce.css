@@ -1,0 +1,113 @@
+.cart__name-link {
+	color: #1855a0;
+}
+
+.shop_table thead {
+	background-color: rgba(0, 0, 0, 0.02);
+}
+
+.woocommerce table.shop_table {
+	margin-bottom: 15px;
+	border-radius: 0;
+}
+
+table.shop_table th {
+	color: #444;
+}
+
+.woocommerce #respond input#submit, .woocommerce a.button, .woocommerce button.button, .woocommerce input.button {
+	background: #eee;
+	color: #444;
+	border-radius: 0;
+	font-weight: 400;
+	padding: 8px 18px;
+	line-height: 20px;
+	font-size: 14px;
+}
+
+.woocommerce .cart-collaterals .cart_totals, .woocommerce-page .cart-collaterals .cart_totals {
+	width: 35%;
+}
+
+.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt {
+	padding: 12px 18px;
+	background: #2d5c88;
+	line-height: 20px;
+	font-size: 14px;
+	color: #fff;
+	border: none;
+	transition: background 0.25s ease-out;
+}
+
+.cart_totals > h2 {
+	margin: 10px 0;
+	font-family: 'Lato';
+	font-weight: 400;
+	font-size: 3.2rem;
+}
+
+.woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover {
+	background-color: #2b69a2;
+	color: #fff;
+}
+
+form .form-row {
+	padding: 3px 0 6px;
+}
+
+.woocommerce form .form-row-first, .woocommerce-page form .form-row-first {
+	width: 100%;
+	float: left;
+}
+
+.woocommerce form .form-row input.input-text, .woocommerce form .form-row textarea {
+	padding: 10px;
+	border: 1px solid #999;
+}
+
+.woocommerce form .form-row label {
+	font-weight: 700;
+}
+
+.woocommerce .checkout h3 {
+	margin: 10px 0;
+	font-family: 'Lato';
+	font-size: 28px;
+	line-height: 40px;
+	font-weight: 400;
+}
+
+#add_payment_method #payment, .woocommerce-cart #payment, .woocommerce-checkout #payment {
+	background: #f2f2f2;
+	background: rgba(0,0,0,.01);
+	border: 1px solid #dfdfdf;
+	border-color: rgba(0,0,0,.07);
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+}
+
+#add_payment_method #payment div.payment_box, .woocommerce-cart #payment div.payment_box, .woocommerce-checkout #payment div.payment_box {
+	padding: 0 10px;
+}
+
+#add_payment_method #payment div.payment_box p:last-child, .woocommerce-cart #payment div.payment_box p:last-child, .woocommerce-checkout #payment div.payment_box p:last-child {
+	line-height: 35px;
+}
+
+.woocommerce #payment #place_order, .woocommerce-page #payment #place_order {
+	margin-top: 5px;
+	text-transform: uppercase;
+}
+
+.woocommerce .woocommerce-order h2 {
+	margin: 10px 0;
+	font-family: 'Lato';
+	font-size: 32px;
+	font-weight: 400;
+	color: #333333;
+}
+
+.woocommerce .woocommerce-table__product-name a {
+	color: #1855a0;
+}
