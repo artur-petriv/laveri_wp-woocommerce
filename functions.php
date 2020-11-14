@@ -207,6 +207,8 @@ function add_page_head_wraps_close() {
 // Remove upsale and relate-products on content-single-product (temporal changes)
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
+add_action('woocommerce_after_single_product', 'woocommerce_output_related_products', 10);
+
 
 // Change content-single-product descripton position
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_product_data_tabs', 10 );
@@ -299,6 +301,40 @@ function laveri2_post_thumbnail() {
 	endif;
 }
 
+
+//  Define image sizes
+function yourtheme_woocommerce_image_dimensions() {
+	global $pagenow;
+ 
+	if ( ! isset( $_GET['activated'] ) || $pagenow != 'themes.php' ) {
+		return;
+	}
+
+  	$catalog = array(
+		'width' 	=> '300',	// px
+		'height'	=> '300',	// px
+		'crop'		=> 1 		// true
+	);
+
+	$single = array(
+		'width' 	=> '456',	// px
+		'height'	=> '456',	// px
+		'crop'		=> 1 		// true
+	);
+
+	$thumbnail = array(
+		'width' 	=> '100',	// px
+		'height'	=> '100',	// px
+		'crop'		=> 0 		// false
+	);
+
+	// Image sizes
+	update_option( 'shop_catalog_image_size', $catalog ); 		// Product category thumbs
+	update_option( 'shop_single_image_size', $single ); 		// Single product image
+	update_option( 'shop_thumbnail_image_size', $thumbnail ); 	// Image gallery thumbs
+}
+
+add_action( 'after_switch_theme', 'yourtheme_woocommerce_image_dimensions', 1 );
 
 
 // Change id to Menu li elements
