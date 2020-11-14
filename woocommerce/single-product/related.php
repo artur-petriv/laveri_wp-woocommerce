@@ -21,33 +21,42 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 if ( $related_products ) : ?>
 
-	<section class="related products">
+	<div class="similar-products">
 
 		<?php
 		$heading = apply_filters( 'woocommerce_product_related_products_heading', __( 'Related products', 'woocommerce' ) );
 
 		if ( $heading ) :
 			?>
-			<h2><?php echo esc_html( $heading ); ?></h2>
+			<h2 class="similar-products__title"><?php echo esc_html( $heading ); ?></h2>
 		<?php endif; ?>
-		
-		<?php woocommerce_product_loop_start(); ?>
 
-			<?php foreach ( $related_products as $related_product ) : ?>
+		<div class="swiper-container similar-products__slider">
 
-					<?php
-					$post_object = get_post( $related_product->get_id() );
+			<div class="swiper-wrapper">
+	
 
-					setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
+				<?php foreach ( $related_products as $related_product ) : ?>
 
-					wc_get_template_part( 'content', 'product' );
-					?>
+						<?php
+						$post_object = get_post( $related_product->get_id() );
 
-			<?php endforeach; ?>
+						setup_postdata( $GLOBALS['post'] =& $post_object ); // phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited, Squiz.PHP.DisallowMultipleAssignments.Found
 
-		<?php woocommerce_product_loop_end(); ?>
+						wc_get_template_part( 'content', 'similar' );
+						?>
 
-	</section>
+				<?php endforeach; ?>
+
+
+			</div>
+
+			<div class="swiper-button-prev"></div>
+			<div class="swiper-button-next"></div>
+
+		</div>
+
+	</div>
 	<?php
 endif;
 

@@ -9,7 +9,7 @@ Template Post Type: page
 
 	<div class="slider-main">
 		<div class="container">
-			<div class="swiper-container">
+			<div class="swiper-container slider-main__slider">
 				<div class="swiper-wrapper">
 					<div class="slider-main__item swiper-slide"><img class="slider-main__img" src="<?php the_field('slider_image_1', '58'); ?>" alt="Bag"><a
 							class="slider-main__link" href="./card.html">Подробнее<svg class="icon-arrow-right slider-main__icon">
@@ -34,6 +34,9 @@ Template Post Type: page
 		<div class="container">
 			<h2 class="featured-products__title">Featured Products</h2>
 			<div class="featured-products__list">
+			<?php 
+				echo do_shortcode('[related_products]');
+			?>
 				<div class="product"><a class="product__link" href="./card.html">
 						<div class="product__images">
 							<div class="product__image product__image-front"><img class="product__img" src="img/product_01.jpg"

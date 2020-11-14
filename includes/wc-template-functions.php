@@ -1929,7 +1929,7 @@ if ( ! function_exists( 'woocommerce_output_related_products' ) ) {
 
 		$args = array(
 			'posts_per_page' => 4,
-			'columns'        => 4,
+			'columns'        => 1,
 			'orderby'        => 'rand', // @codingStandardsIgnoreLine.
 		);
 
@@ -1952,8 +1952,8 @@ if ( ! function_exists( 'woocommerce_related_products' ) ) {
 		}
 
 		$defaults = array(
-			'posts_per_page' => 2,
-			'columns'        => 2,
+			'posts_per_page' => 4,
+			'columns'        => 1,
 			'orderby'        => 'rand', // @codingStandardsIgnoreLine.
 			'order'          => 'desc',
 		);

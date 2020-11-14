@@ -205,6 +205,7 @@ function add_page_head_wraps_close() {
 }
 
 // Remove upsale and relate-products on content-single-product (temporal changes)
+remove_action( 'woocommerce_before_single_product_summary', 'woocommerce_show_product_sale_flash', 10 );
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_upsell_display', 15 );
 remove_action( 'woocommerce_after_single_product_summary', 'woocommerce_output_related_products', 20 );
 add_action('woocommerce_after_single_product', 'woocommerce_output_related_products', 10);
@@ -323,8 +324,8 @@ function yourtheme_woocommerce_image_dimensions() {
 	);
 
 	$thumbnail = array(
-		'width' 	=> '100',	// px
-		'height'	=> '100',	// px
+		'width' 	=> '180',	// px
+		'height'	=> '180',	// px
 		'crop'		=> 0 		// false
 	);
 
@@ -336,6 +337,39 @@ function yourtheme_woocommerce_image_dimensions() {
 
 add_action( 'after_switch_theme', 'yourtheme_woocommerce_image_dimensions', 1 );
 
+add_filter( 'woocommerce_get_image_size_gallery_thumbnail', function( $size ) {
+    return array(
+        'width' => 180,
+        'height' => 180,
+        'crop' => 0,
+    );
+} );
+
+
+
+
+// 
+// add_action( 'wp', 'per_row' );
+// function per_row() {
+    
+//     if ( is_product_category() ) {
+//         add_filter('loop_shop_columns', 'loop_columns');
+//             if (!function_exists('loop_columns')) {
+//                 function loop_columns() {
+//                 return 2; // 5 products per row
+//                 }
+//             }
+//         }
+        
+//     if( is_product() ){
+//         add_filter('loop_shop_columns', 'loop_columns');
+//             if (!function_exists('loop_columns')) {
+//                 function loop_columns() {
+//                 return 2; // 6 products per row
+//                 }
+//             }
+//     }
+// }
 
 // Change id to Menu li elements
 // add_filter( 'nav_menu_item_id', 'filter_menu_item_css_id', 10, 4 );
