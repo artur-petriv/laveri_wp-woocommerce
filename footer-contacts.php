@@ -50,17 +50,29 @@
 	</footer>
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<?php wp_footer(); ?>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $(`.magnific`).magnificPopup({
-        type: `image`,
-        gallery: {
-          enabled: true,
-        },
-      })
-    })
-  </script>
+	<script>
+		 // Google maps function
+    function initMap() {
+        const map = new google.maps.Map(document.querySelector(`.content-contacts__map`), {
+            center: {
+                lat: 50.4608176,
+                lng: 30.4949624,
+            },
+            zoom: 14,
+            disableDefaultUI: !0,
+        })
+
+        const marker = new google.maps.Marker({
+            position: { lat: 50.4609176, lng: 30.4956624 },
+            map,
+        })
+        marker.addListener(`click`, function () {})
+    }
+
+    // Init gooogle map
+    // initMap()
+	</script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvt_XnVi4vJyFx1LhfRK_tm-5F3IPhOj0&amp;language=ru&amp;callback=initMap" async="" defer=""></script>
 </body>
 
 </html>

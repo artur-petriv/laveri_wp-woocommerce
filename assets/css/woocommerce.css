@@ -111,3 +111,11 @@ form .form-row {
 .woocommerce .woocommerce-table__product-name a {
 	color: #1855a0;
 }
+
+.stock.in-stock {
+	color: #118c11;
+}
+
+.stock.out-of-stock {
+	color: red;
+}

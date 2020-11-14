@@ -11,15 +11,15 @@ Template Post Type: page
 		<div class="container">
 			<div class="swiper-container">
 				<div class="swiper-wrapper">
-					<div class="slider-main__item swiper-slide"><img class="slider-main__img" src="img/banner_01.jpg" alt="Bag"><a
+					<div class="slider-main__item swiper-slide"><img class="slider-main__img" src="<?php the_field('slider_image_1', '58'); ?>" alt="Bag"><a
 							class="slider-main__link" href="./card.html">Подробнее<svg class="icon-arrow-right slider-main__icon">
 								<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#arrow-right"></use>
 							</svg></a></div>
-					<div class="slider-main__item swiper-slide"><img class="slider-main__img" src="img/banner_02.jpg" alt="Bag"><a
+					<div class="slider-main__item swiper-slide"><img class="slider-main__img" src="<?php the_field('slider_image_2', '58'); ?>" alt="Bag"><a
 							class="slider-main__link" href="./card.html">Подробнее<svg class="icon-arrow-right slider-main__icon">
 								<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#arrow-right"></use>
 							</svg></a></div>
-					<div class="slider-main__item swiper-slide"><img class="slider-main__img" src="img/banner_03.jpg" alt="Bag"><a
+					<div class="slider-main__item swiper-slide"><img class="slider-main__img" src="<?php the_field('slider_image_3', '58'); ?>" alt="Bag"><a
 							class="slider-main__link" href="./card.html">Подробнее<svg class="icon-arrow-right slider-main__icon">
 								<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#arrow-right"></use>
 							</svg></a></div>

@@ -15,7 +15,7 @@ Template Post Type: page
             <h1 class="head-page__title" style="text-transform: uppercase"><?php the_title() ?></h1>
           </div>
           <div class="head-page__right">
-            <div class="breadcrumbs"><a class="breadcrumbs__link" href="<?php bloginfo('url') ?>">Home</a><span
+            <div class="breadcrumbs"><a class="breadcrumbs__link" href="<?php bloginfo('url') ?>">Главная</a><span
                 class="breadcrumbs__tag">»</span><span class="breadcrumbs__current"><?php the_title() ?></span></div>
           </div>
         </div>

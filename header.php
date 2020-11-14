@@ -7,6 +7,7 @@
 	<meta content="width=device-width, initial-scale=1" name="viewport">
 	<meta content="ie=edge" http-equivx="x-ua-compatible">
 	<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&amp;display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
 	<?php wp_head(); ?>
 </head>
 
