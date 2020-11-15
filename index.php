@@ -32,76 +32,9 @@ Template Post Type: page
 	</div>
 	<section class="featured-products">
 		<div class="container">
-			<h2 class="featured-products__title">Featured Products</h2>
+			<h2 class="featured-products__title">Популярные товары</h2>
 			<div class="featured-products__list">
-			<?php 
-				echo do_shortcode('[related_products]');
-			?>
-				<div class="product"><a class="product__link" href="./card.html">
-						<div class="product__images">
-							<div class="product__image product__image-front"><img class="product__img" src="img/product_01.jpg"
-									alt="Product"></div>
-							<div class="product__image product__image-back"><img class="product__img" src="img/product_02.jpg"
-									alt="Product"></div>
-						</div>
-					</a><a class="product__link" href="./card.html">
-						<h3 class="product__title">Сумка Bordon синий крокодил</h3>
-					</a>
-					<div class="product__rate"><span class="product__rate-text">Not rated</span></div>
-					<div class="product__price">2500 грн.</div><a class="product__button">В корзину</a>
-				</div>
-				<div class="product"><a class="product__link" href="./card.html">
-						<div class="product__images">
-							<div class="product__image product__image-front"><img class="product__img" src="img/product_01.jpg"
-									alt="Product"></div>
-							<div class="product__image product__image-back"><img class="product__img" src="img/product_02.jpg"
-									alt="Product"></div>
-						</div>
-					</a><a class="product__link" href="./card.html">
-						<h3 class="product__title">Сумка Bordon синий крокодил</h3>
-					</a>
-					<div class="product__rate"><span class="product__rate-text">Not rated</span></div>
-					<div class="product__price">2500 грн.</div><a class="product__button">В корзину</a>
-				</div>
-				<div class="product"><a class="product__link" href="./card.html">
-						<div class="product__images">
-							<div class="product__image product__image-front"><img class="product__img" src="img/product_01.jpg"
-									alt="Product"></div>
-							<div class="product__image product__image-back"><img class="product__img" src="img/product_02.jpg"
-									alt="Product"></div>
-						</div>
-					</a><a class="product__link" href="./card.html">
-						<h3 class="product__title">Сумка Bordon синий крокодил</h3>
-					</a>
-					<div class="product__rate"><span class="product__rate-text">Not rated</span></div>
-					<div class="product__price">2500 грн.</div><a class="product__button">В корзину</a>
-				</div>
-				<div class="product"><a class="product__link" href="./card.html">
-						<div class="product__images">
-							<div class="product__image product__image-front"><img class="product__img" src="img/product_01.jpg"
-									alt="Product"></div>
-							<div class="product__image product__image-back"><img class="product__img" src="img/product_02.jpg"
-									alt="Product"></div>
-						</div>
-					</a><a class="product__link" href="./card.html">
-						<h3 class="product__title">Сумка Bordon синий крокодил</h3>
-					</a>
-					<div class="product__rate"><span class="product__rate-text">Not rated</span></div>
-					<div class="product__price">2500 грн.</div><a class="product__button">В корзину</a>
-				</div>
-				<div class="product"><a class="product__link" href="./card.html">
-						<div class="product__images">
-							<div class="product__image product__image-front"><img class="product__img" src="img/product_01.jpg"
-									alt="Product"></div>
-							<div class="product__image product__image-back"><img class="product__img" src="img/product_02.jpg"
-									alt="Product"></div>
-						</div>
-					</a><a class="product__link" href="./card.html">
-						<h3 class="product__title">Сумка Bordon синий крокодил</h3>
-					</a>
-					<div class="product__rate"><span class="product__rate-text">Not rated</span></div>
-					<div class="product__price">2500 грн.</div><a class="product__button">В корзину</a>
-				</div>
+				<?php echo do_shortcode('[products class="swiper-container similar-products__slider" limit="8" columns="1" orderby="date" order="DESC" visibility="visible"]'); ?>
 			</div>
 		</div>
 	</section>

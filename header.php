@@ -17,11 +17,14 @@
 			<div class="container">
 				<div class="header__bar-wrap">
 					<div class="search">
-						<form class="search__form"><input class="search__input" type="text" name="search" method="get"
-								placeholder="Искать"><button class="search__submit" type="submit"><svg
+						<form class="search__form" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+						    <input class="search__input" type="search" value="<?php echo get_search_query(); ?>" name="s"
+								placeholder="Искать"><button class="search__submit" value="<?php echo esc_attr_x( 'Search', 'submit button', 'woocommerce' ); ?>" type="submit"><svg
 									class="icon-magnifier search__icon">
 									<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#magnifier"></use>
-								</svg></button></form>
+								</svg></button>
+						    <input type="hidden" name="post_type" value="product" />
+						</form>
 					</div>
 					<div class="header__content">
 						<ul class="header__socials">

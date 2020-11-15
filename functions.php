@@ -186,6 +186,8 @@ function change_existing_currency_symbol( $currency_symbol, $currency ) {
 
 // Change quantity of produtct on shop page (temporal changes)
 // add_filter( 'loop_shop_per_page', create_function( '$cols', 'return 4;' ), 20 );
+add_filter( 'loop_shop_per_page', function($cols) {return 8;}, 20 );
+
 
 // Remove Sidebar sinhle-product
 remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
@@ -347,6 +349,22 @@ add_filter( 'woocommerce_get_image_size_gallery_thumbnail', function( $size ) {
 
 
 
+// 
+add_action( 'woocommerce_shortcode_before_products_loop', 'roka_before_products_shortcode_loop', 1, 10 );
+add_action( 'woocommerce_shortcode_after_products_loop', 'roka_after_products_shortcode_loop', 0, 10 );
+
+function roka_before_products_shortcode_loop( $atts ) {
+    $GLOBALS[ 'roka_woocommerce_loop_template' ] =
+        ( isset( $atts[ 'class' ] ) ? $atts[ 'class' ] : '' );
+}
+
+function roka_after_products_shortcode_loop( $atts ) {
+    $GLOBALS[ 'roka_woocommerce_loop_template' ] = '';
+}
+
+// Change position woocommerce search result
+// remove_action( 'woocommerce_no_products_found', 'wc_no_products_found', 10 );
+// add_action( 'woocommerce_after_main_content', 'wc_no_products_found', 10 );
 
 // 
 // add_action( 'wp', 'per_row' );

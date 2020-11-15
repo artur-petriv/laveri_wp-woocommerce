@@ -119,3 +119,85 @@ form .form-row {
 .stock.out-of-stock {
 	color: red;
 }
+
+
+/* Adaptive */
+.featured-products__list .catalog__products {
+	margin-top: 0;
+}
+
+@media (max-width: 1024px) {
+	.catalog__products>.product {
+		margin-bottom: 20px !important;
+	}
+	.catalog .head-page {
+		flex-direction: column !important;
+		align-items: flex-start !important;
+	}
+	.catalog .head-page__left {
+		padding-bottom: 20px !important;
+	}
+	.catalog .head-page__right {
+		width: 100% !important;
+	}
+	.head-page__form {
+		width: 100% !important;
+	}
+	.head-page__sort {
+		margin-bottom: 18px !important;
+	}
+	.head-page__result {
+		margin-top: 15px !important;
+	}
+	.breadcrumbs {
+		align-self: flex-end !important;
+	}
+	.galery-card__img {
+		max-width: 100% !important;
+		height: auto !important;
+	}
+	.card__content {
+		flex-direction: column !important;
+	}
+	.card__galery {
+		display: flex !important;
+    flex-direction: column !important;
+	}
+	.galery-card__link {
+		margin: 10px 0 !important;
+	}
+	.info-card {
+		width: 100% !important;
+	}
+	.info-card__submit {
+		margin-left: 10px;
+		width: 100% !important;
+	}
+	.product-quantity {
+		display: flex !important;
+		justify-content: space-between !important;
+	}
+	.info-card__amount {
+		margin-right: 0 !important;
+	}
+	.woocommerce .cart-collaterals .cart_totals, .woocommerce-page .cart-collaterals .cart_totals {
+		width: 100% !important;
+	}
+	.woocommerce #respond input#submit.alt, .woocommerce a.button.alt, .woocommerce button.button.alt, .woocommerce input.button.alt {
+		width: 100% !important;
+		text-align: center !important;
+	}
+	.head-page__title {
+		font: 400 32px/1 Lato !important;
+	}
+	#add_payment_method #payment div.payment_box p:last-child, .woocommerce-cart #payment div.payment_box p:last-child, .woocommerce-checkout #payment div.payment_box p:last-child {
+		padding: 10px 0 !important;
+		line-height: 15px !important;
+	}
+	.page td {
+		padding-right: 50px !important;
+	}
+	.page td:last-child {
+		padding-right: 0 !important;
+	}
+}
