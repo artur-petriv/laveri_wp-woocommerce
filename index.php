@@ -34,7 +34,7 @@ Template Post Type: page
 		<div class="container">
 			<h2 class="featured-products__title">Популярные товары</h2>
 			<div class="featured-products__list">
-				<?php echo do_shortcode('[products class="swiper-container similar-products__slider" limit="8" columns="1" orderby="date" order="DESC" visibility="visible"]'); ?>
+				<?php echo do_shortcode('[products limit="8" columns="1" orderby="date" order="DESC" visibility="visible"]'); ?>
 			</div>
 		</div>
 	</section>

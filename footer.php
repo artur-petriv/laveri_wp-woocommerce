@@ -29,18 +29,24 @@
 					<div class="content-footer__column">
 						<h4 class="content-footer__title">Подписывайтесь</h4>
 						<ul class="content-footer__list content-footer__list_socials">
-							<li class="content-footer__item content-footer__item_social"><a class="content-footer__link" href="#"><svg
+							<?php if( get_field('facebook', '58') ): ?>
+							<li class="content-footer__item content-footer__item_social"><a class="content-footer__link" href="<?php the_field('facebook_link', '58'); ?>"><svg
 										class="icon-facebook content-footer__icon">
 										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#facebook"></use>
 									</svg></a></li>
-							<li class="content-footer__item content-footer__item_social"><a class="content-footer__link" href="#"><svg
+							<?php endif; ?>
+							<?php if( get_field('instagram', '58') ): ?>
+							<li class="content-footer__item content-footer__item_social"><a class="content-footer__link" href="<?php the_field('instagram_link', '58'); ?>"><svg
 										class="icon-instagram content-footer__icon">
 										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#instagram"></use>
 									</svg></a></li>
-							<li class="content-footer__item content-footer__item_social"><a class="content-footer__link" href="#"><svg
+							<?php endif; ?>
+							<?php if( get_field('vkontakte', '58') ): ?>
+							<li class="content-footer__item content-footer__item_social"><a class="content-footer__link" href="<?php the_field('vkontakte_link', '58'); ?>"><svg
 										class="icon-vk content-footer__icon">
 										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#vk"></use>
 									</svg></a></li>
+							<?php endif; ?>
 						</ul>
 					</div>
 				</div>

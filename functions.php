@@ -322,7 +322,7 @@ function yourtheme_woocommerce_image_dimensions() {
 	$single = array(
 		'width' 	=> '456',	// px
 		'height'	=> '456',	// px
-		'crop'		=> 1 		// true
+		'crop'		=> 0 		// true
 	);
 
 	$thumbnail = array(

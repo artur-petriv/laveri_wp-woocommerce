@@ -28,19 +28,25 @@
 					</div>
 					<div class="header__content">
 						<ul class="header__socials">
-							<li class="header__social"><a class="header__social-link" href="#"><svg
-										class="icon-facebook header__social-icon">
-										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#facebook"></use>
-									</svg></a></li>
-							<li class="header__social"><a class="header__social-link" href="#"><svg
+							<?php if( get_field('facebook', '58') ): ?>
+								<li class="header__social"><a class="header__social-link" href="<?php the_field('facebook_link', '58'); ?>"><svg
+											class="icon-facebook header__social-icon">
+											<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#facebook"></use>
+										</svg></a></li>
+							<?php endif; ?>
+							<?php if( get_field('vkontakte', '58') ): ?>
+							<li class="header__social"><a class="header__social-link" href="<?php the_field('vkontakte_link', '58'); ?>"><svg
 										class="icon-vk header__social-icon">
 										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#vk"></use>
 									</svg></a></li>
-							<li class="header__social"><a class="header__social-link" href="#"><svg
+							<?php endif; ?>
+							<?php if( get_field('instagram', '58') ): ?>
+							<li class="header__social"><a class="header__social-link" href="<?php the_field('instagram_link', '58'); ?>"><svg
 										class="icon-instagram header__social-icon">
 										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#instagram"></use>
 									</svg></a></li>
-							<li class="header__social"><a class="header__social-link" href="#"><svg
+							<?php endif; ?>
+							<li class="header__social"><a class="header__social-link" href="tel:<?php the_field('phone_call', '58'); ?>"><svg
 										class="icon-phone header__social-icon">
 										<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/img/sprite.svg#phone"></use>
 									</svg></a></li>
